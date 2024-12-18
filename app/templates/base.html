@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}$STUPID{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='stupid-favicon.svg') }}">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='stupid-logo.png') }}");
+            background-size: 25%;
+            background-position: center;
+            animation: slideBG 10s linear infinite;
+        }
+
+        @keyframes slideBG {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="min-h-screen bg-stone-700 text-gray-800">
+    <header>
+        <img class="w-full h-auto" src="{{ url_for('static', filename='stupid-header.webp') }}" alt="$STUPID COIN" />
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    {% include "partials/footer.html" %}
+</body>
+
+</html>
