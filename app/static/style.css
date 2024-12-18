@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'HomegirlKiddoPrint';
+    src: url('../static/fonts/HomegirlKiddoPrint.ttf');
+}
+
+body {
+    font-family: 'HomegirlKiddoPrint', sans-serif;
+}
