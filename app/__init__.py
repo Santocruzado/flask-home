@@ -21,5 +21,8 @@ def create_app():
     from app.stupid import stupid_bp
     app.register_blueprint(stupid_bp)
 
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
 
     return app
