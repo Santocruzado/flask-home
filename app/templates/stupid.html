@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Random Image Animation</title>
+</head>
+
+<body class="relative bg-gray-800 min-h-screen text-center text-white">
+    <header class="py-4">
+        <h1 class="text-4xl font-bold">$STUPID Coin Animation</h1>
+    </header>
+
+    <main class="flex flex-col items-center justify-center h-full">
+        <button id="animate-btn" class="bg-yellow-500 px-6 py-3 text-lg font-bold rounded-md hover:bg-yellow-600">
+            Show Random Image
+        </button>
+    </main>
+
+    <audio id="sound" src="/static/sounds/sound.mp3"></audio>
+    <div id="animation-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+
+    <script>
+        const button = document.getElementById('animate-btn');
+        const sound = document.getElementById('sound');
+        const animationContainer = document.getElementById('animation-container');
+
+        button.addEventListener('click', async () => {
+            // Play the sound
+            sound.currentTime = 0; // Reset the sound if already playing
+            sound.play();
+
+            // Fetch a random image
+            const response = await fetch('/stupid-image');
+            const data = await response.json();
+            if (data.error) {
+                alert('No images available!');
+                return;
+            }
+
+            // Create an image element
+            const img = document.createElement('img');
+            img.src = data.url;
+            img.className = 'absolute w-20 h-20';
+            img.style.top = `${Math.random() * window.innerHeight}px`;
+            img.style.left = `${Math.random() * window.innerWidth}px`;
+
+            // Initially set opacity to 1 (fully visible)
+            img.style.opacity = '1';
+
+            animationContainer.appendChild(img);
+
+            // Animate the image (move it randomly)
+            let dx = Math.random() > 0.5 ? 1 : -1;
+            let dy = Math.random() > 0.5 ? 1 : -1;
+
+            const interval = setInterval(() => {
+                const rect = img.getBoundingClientRect();
+                const x = rect.left + dx * 5;
+                const y = rect.top + dy * 5;
+
+                // Change direction when hitting the window boundaries
+                if (x <= 0 || x + rect.width >= window.innerWidth) dx *= -1;
+                if (y <= 0 || y + rect.height >= window.innerHeight) dy *= -1;
+
+                img.style.transform = `translate(${x}px, ${y}px)`;
+            }, 16);
+
+            // Set transitions for both movement and fading out
+            img.style.transition = 'transform 10s ease-out, opacity 10s ease-out';
+
+            // Start the fading out effect
+            setTimeout(() => {
+                img.style.opacity = '0';  // Fade out the image after the initial movement
+            }, 100); // Slight delay before fading out, just to ensure the transition starts smoothly
+
+            // Remove the image after 10 seconds
+            setTimeout(() => {
+                clearInterval(interval);
+                img.remove();
+            }, 10000); // The image will be removed after 10 seconds
+        });
+    </script>
+</body>
+
+</html>

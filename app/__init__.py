@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import os
 from dotenv import load_dotenv
 
@@ -17,5 +17,9 @@ def create_app():
     # Blueprint
     from app.routes import main
     app.register_blueprint(main)
+
+    from app.stupid import stupid_bp
+    app.register_blueprint(stupid_bp)
+
 
     return app
