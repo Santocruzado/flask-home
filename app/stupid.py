@@ -3,7 +3,7 @@ import os
 import random
 
 # Crear el blueprint
-stupid_bp = Blueprint('stupid', __name__)
+stupid_bp = Blueprint('stupid_bp', __name__)
 
 @stupid_bp.route('/stupid-image')
 def get_random_image():
@@ -15,5 +15,5 @@ def get_random_image():
     return jsonify({"url": image_url})
 
 @stupid_bp.route('/stupid')
-def random_image():
+def stupid():
         return render_template('stupid.html')
