@@ -9,6 +9,15 @@
 </head>
 
 <body class="relative bg-gray-800 min-h-screen text-center text-white">
+    <!-- nav -->
+    <nav class="text-4xl bg-stone-800 text-white text-center pt-2 flex justify-center flex md:flex">
+        <ul class="flex lg:flex-row flex-col space-x-4">
+            <li><a href="{{ url_for('main.home') }}" class="hover:text-yellow-300 hover:underline">$STUPID</a></li>
+            <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:text-yellow-300 hover:underline">MERCH</a></li>
+            <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:text-yellow-300 hover:underline">FINANCE HUB</a></li>
+            <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:text-yellow-300 hover:underline">AI FINANCIAL AGENT</a></li>
+        </ul>
+    </nav>
     <header class="py-4">
         <h1 class="text-4xl font-bold">$STUPID Coin Animation</h1>
     </header>
