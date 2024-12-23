@@ -50,11 +50,17 @@
             }
 
             // Create an image element
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const offsetRange = 200;
             const img = document.createElement('img');
             img.src = data.url;
             img.className = 'absolute w-20 h-20';
-            img.style.top = `${Math.random() * window.innerHeight}px`;
-            img.style.left = `${Math.random() * window.innerWidth}px`;
+
+            img.style.top = `${centerY + (Math.random() * offsetRange * 2 - offsetRange)}px`;
+            img.style.left = `${centerX + (Math.random() * offsetRange * 2 - offsetRange)}px`;
+            //img.style.top = `${Math.random() * window.innerHeight}px`;
+            //img.style.left = `${Math.random() * window.innerWidth}px`;
 
             // Initially set opacity to 1 (fully visible)
             img.style.opacity = '1';

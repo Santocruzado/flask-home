@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='flex flex-col items-center'>
+        <div class="w-96 h-96 bg-white border border-gray-300 shadow-md relative overflow-hidden">
+            <img id="animatedImage" class="w-full h-auto absolute bottom-0 animate-drop" src="{{ url_for('static', filename=images[0]) }}" alt="Animated">
+        </div>
+    
+        <button class='px-4 py-2 mt-2 bg-stone-600 hover:bg-stone-500 text-white font-bold rounded-md shadow-md transition-all duration-300'>
+            <a href="https://twitter.com/intent/tweet?url=https://www.ejemplo.com&text=¡Mira%20esto!" target="_blank">
+                <img src="{{ url_for('static', filename='x-logo.svg') }}" alt="Twitter" class="w-6 h-6">
+            </a>
+        </button>
+            
+        </div>
+    </div>
+
+    <script>
+        const images = {{ images | tojson }};
+        let currentIndex = 0;
+        const animatedImage = document.getElementById('animatedImage');
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            animatedImage.src = `/static/${images[currentIndex]}`;
+            animatedImage.classList.remove('animate-drop');
+            void animatedImage.offsetWidth; // Trigger reflow to restart animation
+            animatedImage.classList.add('animate-drop');
+        }
+
+        let interval = setInterval(changeImage, 3000);
+
+        animatedImage.addEventListener('mouseenter', () => clearInterval(interval));
+        animatedImage.addEventListener('mouseleave', () => interval = setInterval(changeImage, 3000));
+
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            const img = document.getElementById('animatedImage');
+            const imgSrc = img.src;
+            
+            const link = document.createElement('a');
+            link.href = imgSrc;
+            link.download = imgSrc.split('/').pop(); 
+            link.click();
+        });
+
+    </script>
+    
+    {% endblock %}

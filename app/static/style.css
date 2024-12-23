@@ -6,3 +6,41 @@
 body {
     font-family: 'HomegirlKiddoPrint', sans-serif;
 }
+
+
+/* MEME */
+@keyframes bounce {
+    0% {
+        transform: translate3d(0, -100%, 0);
+    }
+    30% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -20%, 0);
+    }
+    60% {
+        transform: translate3d(0, 0, 0);
+    }
+    70% {
+        transform: translate3d(0, -10%, 0);
+    }
+    80% {
+        transform: translate3d(0, 0, 0);
+    }
+    90% {
+        transform: translate3d(0, -5%, 0);
+    }
+    95% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-drop {
+    animation: bounce 2s ease-in-out;
+
+
+  }
