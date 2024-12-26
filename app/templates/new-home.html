@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}$STUPID{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ url_for('static', filename='stupid-favicon.svg') }}">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='stupid-logo.png') }}");
+            background-size: 25%;
+            background-position: center;
+            animation: slideBG 10s linear infinite;
+        }
+
+        @keyframes slideBG {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="min-h-screen bg-stone-700 text-gray-800">
+
+    <nav class="flex flex-col md:flex-row md:items-center justify-around md:justify-between text-white m-4 md:mr-6">
+        <div class="flex flex-row justify-around">
+            <!-- Logo -->
+            <a href="{{ url_for('main.home') }}" class="flex flex-row items-center space-x-2 hover:text-amber-300 hover:underline">
+                <img alt='stupidcoin' loading='lazy' width='40' height='40' src={{ url_for('static', filename='stupid-logo.png') }}>
+                <span class="text-3xl">$STUPID CoIN</span>
+            </a>
+            <!-- Botón hamburguesa -->
+            <button id="menu-toggle" class="bg-amber-500 rounded-lg md:hidden focus:outline-none">
+                <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            
+        </div>
+      
+        <!-- Menú principal -->
+        <div id="menu" class="hidden bg-lime-800 md:bg-inherit rounded-lg p-4 flex flex-col md:flex md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8 px-5 mt-4 md:px-0">
+            <ul class="flex flex-col justify-center md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:underline hover:text-amber-300">MERCH</a></li>
+                <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:underline hover:text-amber-300">FINANCE HUB</a></li>
+                <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:underline hover:text-amber-300">AI FINANCIAL AGENT</a></li>
+            </ul>
+          
+            
+            <div class='flex flex-row justify-between space-x-4'>
+                <button class="bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    Buy <br> <span class="text-sm">$Stupid Coin</span>
+                </button>
+                <div class="flex flex-row md:justify-end space-x-4">
+                    <a href="https://t.me/StupidCoinPortal" target="_blank"
+                        class="flex items-center justify-center w-12 h-12 hover:bg-amber-500 text-white rounded-full shadow-md transition-all duration-300">
+                        <img src="{{ url_for('static', filename='telegram-logo.svg') }}" alt="Telegram" class="w-6 h-6">
+                    </a>
+                    
+                    <a href="https://x.com/StupidCoin_SOL" target="_blank"
+                        class="flex items-center justify-center w-12 h-12 hover:bg-amber-500 text-white rounded-full shadow-md transition-all duration-300">
+                        <img src="{{ url_for('static', filename='x-logo.svg') }}" alt="Twitter" class="w-6 h-6">
+                    </a>
+                    
+                    <a href="https://www.tiktok.com/@stupidcoinsol" target="_blank"
+                        class="flex items-center justify-center w-12 h-12 hover:bg-amber-500 text-white rounded-full shadow-md transition-all duration-300">
+                        <img src="{{ url_for('static', filename='tiktok-logo.svg') }}" alt="Tiktok" class="w-6 h-6">
+                    </a>
+                    
+                    <a href="https://www.instagram.com/stupidcoinsol" target="_blank"
+                        class="flex items-center justify-center w-12 h-12 hover:bg-amber-500 text-white rounded-full shadow-md transition-all duration-300">
+                        <img src="{{ url_for('static', filename='instagram-logo.svg') }}" alt="Instagram" class="w-6 h-6">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </nav>
+      
+      
+    <!-- Header -->
+    <header class='text-center h-64'>
+    </header>
+
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    {% include "partials/footer.html" %}
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+          const menu = document.getElementById('menu');
+          menu.classList.toggle('hidden');
+        });
+    </script>
+      
+</body>
+
+</html>
