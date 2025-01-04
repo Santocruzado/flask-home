@@ -2,56 +2,42 @@
 <html lang="en">
 
 <head>
+    <meta name="language" content="en-us">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cache -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Stupid coin">
+    <meta property="og:description" content="$stupid the OG stupidcoin of Solana">
+    <meta property="og:image" content="{{request.url_root}}static/images/stupid-galera.jpg">
+    <meta property="og:url" content="{{ request.url_root }}">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="{{ request.url_root }}static/images/stupid-galera.jpg">
+    <meta name="twitter:title" content="Stupid coin">
+    <meta name="twitter:description" content="$stupid the OG stupidcoin of Solana">
+    <meta name="twitter:image" content="{{ request.url_root }}static/images/stupid-galera.jpg">
+    <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>{% block title %}$STUPID{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}$STUPID{% endblock %}</title>
     <link rel="shortcut icon" type="image/svg+xml" href="{{ url_for('static', filename='stupid-favicon.svg') }}">
-
-    <style>
-        body {
-            background-image: url("{{ url_for('static', filename='stupid-logo.png') }}");
-            background-size: 25%;
-            background-position: center;
-            animation: slideBG 10s linear infinite;
-        }
-
-        @keyframes slideBG {
-            0% {
-                background-position: 0% 0%;
-            }
-
-            100% {
-                background-position: 100% 100%;
-            }
-        }
-    </style>
-
 </head>
 
-<body class="min-h-screen bg-stone-700 text-gray-800">
-    <!-- Header -->
-    <header>
-        <img class="w-full h-auto" src="{{ url_for('static', filename='stupid-header.webp') }}" alt="$STUPID COIN" />
-    </header>
-    <!-- nav -->
-    <nav class="text-4xl bg-stone-800 text-white text-center pt-2 flex justify-center flex md:flex">
+<body class="min-h-screen bg-[rgb(255_234_1/0.4)] ">
 
-            <ul class="flex lg:flex-row flex-col space-x-4">
-                <li><a href="{{ url_for('main.home') }}" class="hover:text-yellow-300 hover:underline">$STUPID</a></li>
-                <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:text-yellow-300 hover:underline">MERCH</a></li>
-                <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:text-yellow-300 hover:underline">FINANCE HUB</a></li>
-                <li><a href="{{ url_for('stupid_bp.stupid') }}" class="hover:text-yellow-300 hover:underline">AI FINANCIAL AGENT</a></li>
-            </ul>
-    </nav>
+    {% block content %}
+    {% endblock %}
 
-
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
     {% include "partials/footer.html" %}
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+
 </body>
 
 </html>

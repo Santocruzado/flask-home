@@ -7,6 +7,23 @@ body {
     font-family: 'HomegirlKiddoPrint', sans-serif;
 }
 
+/* Logo top bar */
+#logotopbar {
+    background-image: url("stupid-logo.png");
+    background-size: auto 100%;
+    animation: slideBG 20s linear infinite;
+    height: 50px;
+}
+
+@keyframes slideBG {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 0%;
+    }
+}
 
 /* MEME */
 @keyframes bounce {

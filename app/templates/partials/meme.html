@@ -1,0 +1,15 @@
+{% block content %}
+<div class="flex flex-col items-center justify-center space-y-6">
+    <div class="w-full h-96 bg-white rounded-lg relative overflow-hidden">
+        <img id="animatedImage" class="w-full h-full absolute bottom-0 animate-drop"
+            src="{{ url_for('static', filename=images[0]) }}" alt="Animated">
+    </div>
+    <button class="mt-6 bg-amber-400 text-center px-4 py-2 rounded-lg shadow-md hover:bg-amber-300 transition">
+        <a href="https://twitter.com/intent/tweet?hashtags=stupidcoin,stupid&via=StupidCoinsX&url=https://www.stupidcoin.io&text=Awesome $STUPID website!"
+            target="_blank" class="flex flex-col items-center text-xl space-x-2">
+            Share $stupid meme on <img src="{{ url_for('static', filename='x-logo.png') }}" alt="Twitter"
+                class="w-6 h-6">
+        </a>
+    </button>
+</div>
+{% endblock %}
