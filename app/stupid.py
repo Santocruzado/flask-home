@@ -17,10 +17,3 @@ def get_random_image():
 @stupid_bp.route('/stupid')
 def stupid():
         return render_template('stupid.html')
-
-@stupid_bp.route('/meme')
-def meme():
-    images_dir = os.path.join(current_app.static_folder, 'images')
-    images = [f"images/{img}" for img in os.listdir(images_dir) if img.endswith(("png", "jpg", "jpeg"))]
-
-    return render_template('meme.html', images=images)
